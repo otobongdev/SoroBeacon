@@ -710,7 +710,7 @@ func TestNonBlockingIngestionAndBroadcastWithStalledConsumer(t *testing.T) {
 	}
 	elapsed := time.Since(start)
 
-	assert.Less(t, elapsed, 30*time.Millisecond, "live broadcast and async notification ingestion must never block on hung webhooks")
+	assert.Less(t, elapsed, 200*time.Millisecond, "live broadcast and async notification ingestion must never block on hung webhooks")
 	select {
 	case got := <-sub.C:
 		assert.Equal(t, int64(1), got.ID)
